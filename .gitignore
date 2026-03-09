@@ -37,3 +37,6 @@ mcp.json
 *.sw?
 .DS_Store
 
+# Local directories (not part of source)
+mnt/
+tmp/

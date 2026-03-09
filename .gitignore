@@ -12,6 +12,7 @@ dist/
 
 # Environment variables
 .env*
+!.env.example
 .env
 .env.local
 .env.*.local
@@ -22,6 +23,7 @@ dist/
 # Tokens file (contains sensitive authentication data)
 tokens.json
 .tokens/
+!.tokens/.gitkeep
 mcp.json
 *.json.bak
 

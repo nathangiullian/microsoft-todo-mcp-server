@@ -1,5 +1,9 @@
 # Microsoft To Do MCP
 
+> **Fork Notice:** This is a personal fork of
+> [jordanburke/microsoft-todo-mcp-server](https://github.com/jordanburke/microsoft-todo-mcp-server)
+> with security hardening applied. See `docs/security.md` for details.
+
 [![CI](https://github.com/jordanburke/microsoft-todo-mcp-server/actions/workflows/ci.yml/badge.svg)](https://github.com/jordanburke/microsoft-todo-mcp-server/actions/workflows/ci.yml)
 [![npm version](https://badge.fury.io/js/microsoft-todo-mcp-server.svg)](https://www.npmjs.com/package/microsoft-todo-mcp-server)
 
@@ -319,6 +323,17 @@ date -d @$(($(cat tokens.json | jq -r '.expiresAt') / 1000))
 # The server logs to stderr for debugging
 mstodo 2> debug.log
 ```
+
+## Security Hardening
+
+This fork applies the following security improvements:
+
+- **Single-tenant Azure App Registration required** — `TENANT_ID` must be your specific tenant GUID, not `organizations` or `common`
+- **Scoped permissions only** — Only `Tasks.Read`, `Tasks.ReadWrite`, and `User.Read` delegated permissions
+- **Tokens stored in `.tokens/` subdirectory** — Excluded from git and cloud sync tools to prevent accidental credential exposure
+- **Legacy token warning** — If `tokens.json` exists in the project root, a warning is logged at startup
+
+See [`docs/security.md`](docs/security.md) for full guidance.
 
 ## Contributing
 

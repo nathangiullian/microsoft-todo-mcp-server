@@ -14,7 +14,15 @@ let accessToken = process.env.MS_TODO_ACCESS_TOKEN
 let refreshToken = process.env.MS_TODO_REFRESH_TOKEN
 
 // Define token file path
-const TOKEN_FILE_PATH = process.env.MSTODO_TOKEN_FILE || path.join(process.cwd(), "tokens.json")
+const TOKEN_FILE_PATH = process.env.MSTODO_TOKEN_FILE || path.join(process.cwd(), ".tokens/tokens.json")
+
+// Warn if legacy tokens.json exists in project root
+if (fs.existsSync(path.join(process.cwd(), "tokens.json"))) {
+  console.error(
+    "[WARN] tokens.json found in project root. Move it to .tokens/tokens.json " +
+      "and add .tokens/ to .gitignore to avoid accidental credential exposure.",
+  )
+}
 
 // Log startup info
 console.error("Microsoft Todo MCP CLI")

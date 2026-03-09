@@ -21,6 +21,9 @@ dist/
 
 # Tokens file (contains sensitive authentication data)
 tokens.json
+.tokens/
+mcp.json
+*.json.bak
 
 # Editor directories and files
 .idea/
